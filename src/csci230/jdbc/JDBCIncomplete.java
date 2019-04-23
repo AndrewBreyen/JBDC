@@ -292,22 +292,25 @@ public class JDBCIncomplete {
 	 *            for departments we're searching for
 	 */
 	public void queryBothTablesForStudentsByLocation(String location) {
-		try {
-			// Create a statement using the connection object
-			//stmt = myConnection.createStatement();
-		
-			// A string to hold the SQL statement
-			System.out.println("hello");
-			//String queryString = "SELECT * FROM Student WHERE Location='"+location+"'";
-			//System.out.println(queryString);
-
-			// Execute the SQL statement
-			//int result = stmt.executeUpdate(queryString);
-		} catch (Exception E) {
+		try {	
+			stmt = myConnection.createStatement();
+			
+			String queryString = "SELECT * FROM Student stu, Department dep WHERE dep.Location='"+location+"' AND stu.Major=dep.Name";
+			System.out.println(queryString);
+			
+			ResultSet rs = stmt.executeQuery(queryString);
+			
+			while (rs.next()) {
+				System.out.println(rs.getString("Name"));
+			}
+			
+		}
+		catch (Exception E) {
 			E.printStackTrace();
 		}
+		
 	}
-
+		
 	/**
 	 * EXERCISE 4: COMPLETE ME
 	 * *****************************************************************************************
@@ -322,8 +325,26 @@ public class JDBCIncomplete {
 	 *            table Department
 	 */
 	public void updateStudentTableByID(String ID, String name, String dept) {
-		String queryString = "Update Student set name='" + name + "', Major = .... where ID =...";
-		System.out.println(queryString);
+		try {
+//			String queryString = "Update Student set name='" + name + "', Major = .... where ID =...";
+//			System.out.println(queryString);
+			stmt = myConnection.createStatement();
+			
+			String queryString = "SELECT * FROM Student stu, Department dep WHERE dep.Location='"+location+"' AND stu.Major=dep.Name";
+			System.out.println(queryString);
+			
+			ResultSet rs = stmt.executeQuery(queryString);
+			
+			while (rs.next()) {
+				System.out.println(rs.getString("Name"));
+			}
+			
+		}
+		catch (Exception E) {
+			E.printStackTrace();
+		}
+		
+		
 	}
 
 	/**
