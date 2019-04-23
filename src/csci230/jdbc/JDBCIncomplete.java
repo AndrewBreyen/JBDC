@@ -245,7 +245,7 @@ public class JDBCIncomplete {
 		try {
 			stmt = myConnection.createStatement();
 			
-			String queryString = "Insert Into Department('"+deptName+"','"+deptLocation+"')";
+			String queryString = "INSERT INTO Department VALUES('"+deptName+"','"+deptLocation+"')";
 			System.out.println(queryString);
 			
 			int result = stmt.executeUpdate(queryString);
@@ -266,10 +266,16 @@ public class JDBCIncomplete {
 	 */
 	public void queryStudentTableByMajor(String dept) {
 		try {
+			
+			
 			String queryString = "SELECT * FROM Student WHERE Major='"+dept+"'";
 			System.out.println(queryString);
 		
-			int result = stmt.executeUpdate(queryString);
+			ResultSet resultset = stmt.executeQuery(queryString);
+			while (resultset.next()) {
+				System.out.println(resultset.getString("Name"));
+			}
+			
 		}
 		catch (Exception E) {
 			E.printStackTrace();
@@ -288,14 +294,15 @@ public class JDBCIncomplete {
 	public void queryBothTablesForStudentsByLocation(String location) {
 		try {
 			// Create a statement using the connection object
-			stmt = myConnection.createStatement();
+			//stmt = myConnection.createStatement();
 		
 			// A string to hold the SQL statement
-			String queryString = "SELECT * FROM Student WHERE 'Location'='"+location+"'";
-			System.out.println(queryString);
+			System.out.println("hello");
+			//String queryString = "SELECT * FROM Student WHERE Location='"+location+"'";
+			//System.out.println(queryString);
 
 			// Execute the SQL statement
-			int result = stmt.executeUpdate(queryString);
+			//int result = stmt.executeUpdate(queryString);
 		} catch (Exception E) {
 			E.printStackTrace();
 		}
