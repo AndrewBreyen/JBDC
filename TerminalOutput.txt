@@ -1,0 +1,66 @@
+*****************************************************************************************
+INSERT INTO Student VALUES('21803', 'The Boss21803' , 'CSCI')
+*****************************************************************************************
+SELECT * FROM Student
+ Name = Jessica	 ID  = 11111	 Dept = CSCI
+ Name = The Boss21803	 ID  = 21803	 Dept = CSCI
+ Name = Brian	 ID  = 22222	 Dept = CSCI
+ Name = Vickie	 ID  = 33333	 Dept = MATH
+ Name = Paula	 ID  = 44444	 Dept = BIOL
+ Name = Brandon	 ID  = 55555	 Dept = CHEM
+ Name = Dusty	 ID  = 66666	 Dept = ENVL
+ Name = Erica	 ID  = 77777	 Dept = ARTS
+ Name = Ryan	 ID  = 88888	 Dept = CSCI
+*****************************************************************************************
+SELECT * FROM Department
+  Name = ARTS	 Location = CSB
+  Name = BIOL	 Location = SJU
+  Name = CHEM	 Location = CSB
+  Name = CSCI	 Location = SJU
+  Name = ENVL	 Location = SJU
+  Name = MATH	 Location = CSB
+*****************************************************************************************
+SELECT * FROM Student WHERE Name LIKE 'Paula'
+ Name = Paula	 ID  = 44444	 Dept = BIOL
+*****************************************************************************************
+INSERT INTO Department VALUES('CS0','SJU')
+*****************************************************************************************
+SELECT * FROM Student WHERE Major='CSCI'
+Jessica
+The Boss21803
+Brian
+Ryan
+*****************************************************************************************
+SELECT * FROM Student stu, Department dep WHERE dep.Location='SJU' AND stu.Major=dep.Name
+Paula
+Jessica
+The Boss21803
+Brian
+Ryan
+Dusty
+*****************************************************************************************
+UPDATE Student SET Name ='What Boss21803', Major = 'MATH' WHERE ID ='21803'
+*****************************************************************************************
+SELECT * FROM Student
+ Name = Jessica	 ID  = 11111	 Dept = CSCI
+ Name = What Boss21803	 ID  = 21803	 Dept = MATH
+ Name = Brian	 ID  = 22222	 Dept = CSCI
+ Name = Vickie	 ID  = 33333	 Dept = MATH
+ Name = Paula	 ID  = 44444	 Dept = BIOL
+ Name = Brandon	 ID  = 55555	 Dept = CHEM
+ Name = Dusty	 ID  = 66666	 Dept = ENVL
+ Name = Erica	 ID  = 77777	 Dept = ARTS
+ Name = Ryan	 ID  = 88888	 Dept = CSCI
+*****************************************************************************************
+SELECT * FROM Department
+  Name = ARTS	 Location = CSB
+  Name = BIOL	 Location = SJU
+  Name = CHEM	 Location = CSB
+  Name = CS0	 Location = SJU
+  Name = CSCI	 Location = SJU
+  Name = ENVL	 Location = SJU
+  Name = MATH	 Location = CSB
+*****************************************************************************************
+DELETE FROM Student WHERE ID='21803'
+DELETE FROM Department WHERE Name='CS0'
+
