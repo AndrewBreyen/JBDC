@@ -93,7 +93,7 @@ public class JDBCIncomplete {
 			stmt = myConnection.createStatement();
 
 			// A string to hold the SQL statement
-			String queryString = "Insert Into Student Values('" + ID + "', '" + name + "' , '" + dept + "')";
+			String queryString = "INSERT INTO Student VALUES('" + ID + "', '" + name + "' , '" + dept + "')";
 			System.out.println(queryString);
 
 			// Execute the SQL statement
@@ -112,7 +112,7 @@ public class JDBCIncomplete {
 			stmt = myConnection.createStatement();
 
 			// A string to hold the SQL statement
-			String queryString = "Select * from Student";
+			String queryString = "SELECT * FROM Student";
 
 			// Execute the query and save resulting table/relation in the ResultSet object
 			rs = stmt.executeQuery(queryString);
@@ -122,7 +122,7 @@ public class JDBCIncomplete {
 			// accessing tuple attributes from a ResultSet
 			System.out.println(queryString);
 			while (rs.next()) {
-				System.out.println(" Name = " + rs.getString("Name") + ", ID  = " + rs.getString("ID") + ", Dept = "
+				System.out.println(" Name = " + rs.getString("Name") + "\t ID  = " + rs.getString("ID") + "\t Dept = "
 						+ rs.getString("Major"));
 			}
 		} catch (Exception E) {
@@ -139,7 +139,7 @@ public class JDBCIncomplete {
 			stmt = myConnection.createStatement();
 
 			// A string to hold the SQL statement
-			String queryString = "Select * from Department";
+			String queryString = "SELECT * FROM Department";
 
 			// Execute the query and save resulting table/relation in the ResultSet object
 			rs = stmt.executeQuery(queryString);
@@ -149,7 +149,7 @@ public class JDBCIncomplete {
 			// accessing tuple attributes from a ResultSet
 			System.out.println(queryString);
 			while (rs.next()) {
-				System.out.println("  Name = " + rs.getString("Name") + ", Location = " + rs.getString("Location"));
+				System.out.println("  Name = " + rs.getString("Name") + "\t Location = " + rs.getString("Location"));
 			}
 		} catch (Exception E) {
 			E.printStackTrace();
@@ -169,7 +169,7 @@ public class JDBCIncomplete {
 			stmt = myConnection.createStatement();
 
 			// A string to hold the SQL statement
-			String queryString = "Select * from Student where Name like '" + student + "'";
+			String queryString = "SELECT * FROM Student WHERE Name LIKE '" + student + "'";
 
 			// Execute the query and save resulting table/relation in the ResultSet object
 			rs = stmt.executeQuery(queryString);
@@ -179,7 +179,7 @@ public class JDBCIncomplete {
 			// accessing tuple attributes from a ResultSet
 			System.out.println(queryString);
 			while (rs.next()) {
-				System.out.println(" Name = " + rs.getString("Name") + ", ID  = " + rs.getString("ID") + ", Dept = "
+				System.out.println(" Name = " + rs.getString("Name") + "\t ID  = " + rs.getString("ID") + "\t Dept = "
 						+ rs.getString("Major"));
 			}
 		} catch (Exception E) {
@@ -199,7 +199,7 @@ public class JDBCIncomplete {
 			stmt = myConnection.createStatement();
 
 			// A string to hold the SQL statement
-			String queryString = "Delete from Student Where ID='" + ID + "'";
+			String queryString = "DELETE FROM Student WHERE ID='" + ID + "'";
 			System.out.println(queryString);
 
 			// Execute the SQL statement
@@ -221,7 +221,7 @@ public class JDBCIncomplete {
 			stmt = myConnection.createStatement();
 
 			// A string to hold the SQL statement
-			String queryString = "Delete from Department Where Name='" + dept + "'";
+			String queryString = "DELETE FROM Department WHERE Name='" + dept + "'";
 			System.out.println(queryString);
 
 			// Execute the SQL statement
@@ -330,14 +330,10 @@ public class JDBCIncomplete {
 //			System.out.println(queryString);
 			stmt = myConnection.createStatement();
 			
-			String queryString = "SELECT * FROM Student stu, Department dep WHERE dep.Location='"+location+"' AND stu.Major=dep.Name";
+			String queryString = "UPDATE Student SET Name ='"+name+"', Major = '"+dept+"' WHERE ID ='"+ID+"'" ;
 			System.out.println(queryString);
 			
-			ResultSet rs = stmt.executeQuery(queryString);
-			
-			while (rs.next()) {
-				System.out.println(rs.getString("Name"));
-			}
+			int result = stmt.executeUpdate(queryString);
 			
 		}
 		catch (Exception E) {
@@ -369,19 +365,19 @@ public class JDBCIncomplete {
 			Random rand = new Random();
 			int id1 = rand.nextInt(100000);
 			System.out.println(
-					"1*****************************************************************************************");
+					"*****************************************************************************************");
 			myJDBC.insertStudentTable("" + id1, "The Boss" + id1, "CSCI");
 			System.out.println(
-					"2*****************************************************************************************");
+					"*****************************************************************************************");
 			myJDBC.queryStudentTable();
 			System.out.println(
-					"3*****************************************************************************************");
+					"*****************************************************************************************");
 			myJDBC.queryDepartmentTable();
 			System.out.println(
-					"4*****************************************************************************************");
+					"*****************************************************************************************");
 			myJDBC.queryStudentTableByStudentName("Paula");
 			System.out.println(
-					"5*****************************************************************************************");
+					"*****************************************************************************************");
 			int id2 = rand.nextInt(40);
 			String loc = "";
 			if (id2 >= 20) {
@@ -391,22 +387,22 @@ public class JDBCIncomplete {
 			}
 			myJDBC.insertDepartmentTable("CS" + id2, loc);
 			System.out.println(
-					"6*****************************************************************************************");
+					"*****************************************************************************************");
 			myJDBC.queryStudentTableByMajor("CSCI");
 			System.out.println(
-					"7*****************************************************************************************");
+					"*****************************************************************************************");
 			myJDBC.queryBothTablesForStudentsByLocation(loc);
 			System.out.println(
-					"8*****************************************************************************************");
+					"*****************************************************************************************");
 			myJDBC.updateStudentTableByID("" + id1, "What Boss" + id1, "MATH");
 			System.out.println(
-					"9*****************************************************************************************");
+					"*****************************************************************************************");
 			myJDBC.queryStudentTable();
 			System.out.println(
-					"10*****************************************************************************************");
+					"*****************************************************************************************");
 			myJDBC.queryDepartmentTable();
 			System.out.println(
-					"11*****************************************************************************************");
+					"*****************************************************************************************");
 			myJDBC.deleteStudentByID("" + id1);
 			myJDBC.deleteDepartmentByName("CS" + id2);
 			myJDBC.closeDatabaseVariables();
